@@ -2,9 +2,7 @@
     <section class="cap-section">
         <div class="cap-banner">
             <div class="cap-left">
-                <div class="cap-icon-wrap">
-                    <div class="cap-icon">⚙</div>
-                </div>
+
                 <h2 class="cap-title">Advanced<br><span>Capabilities</span></h2>
                 <div class="cap-tag">NEXT-GEN SOLUTIONS</div>
             </div>

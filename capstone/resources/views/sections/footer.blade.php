@@ -6,7 +6,7 @@
                     <div class="footer-logo-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </div>
-                    <div class="footer-logo-text">Capstone<span>Global Services</span></div>
+                    <div class="footer-logo-text">Capstone <span>Global Services</span></div>
                 </div>
                 <p class="footer-desc">
                     A trusted global connecting centre providing end-to-end business solutions, transforming organizations through innovation, strategy, and operational excellence since 2016.

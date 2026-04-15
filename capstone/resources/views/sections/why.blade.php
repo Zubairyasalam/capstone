@@ -2,33 +2,33 @@
     <section id="approach" class="why-section">
         <div class="why-banner">
             <div class="why-left">
-                <h2 class="why-title">Why<br>Capstone?</h2>
-                <div class="why-tag">THE CAPSTONE ADVANTAGE</div>
+                <h2 class="why-title">{!! $settings['approach_title'] ?? 'Why<br>Capstone?' !!}</h2>
+                <div class="why-tag">{{ $settings['approach_tag'] ?? 'THE CAPSTONE ADVANTAGE' }}</div>
             </div>
             <div class="why-grid">
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    10+ Years of Proven Experience
+                    {{ $settings['approach_item_1'] ?? '10+ Years of Proven Experience' }}
                 </div>
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    End-to-End Service Integration
+                    {{ $settings['approach_item_2'] ?? 'End-to-End Service Integration' }}
                 </div>
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    Global Network & Alliances
+                    {{ $settings['approach_item_3'] ?? 'Global Network & Alliances' }}
                 </div>
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    Client-Centric Approach
+                    {{ $settings['approach_item_4'] ?? 'Client-Centric Approach' }}
                 </div>
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    Technology-Driven Solutions
+                    {{ $settings['approach_item_5'] ?? 'Technology-Driven Solutions' }}
                 </div>
                 <div class="why-item">
                     <div class="check-icon">✓</div>
-                    Strong Compliance & Governance
+                    {{ $settings['approach_item_6'] ?? 'Strong Compliance & Governance' }}
                 </div>
             </div>
         </div>

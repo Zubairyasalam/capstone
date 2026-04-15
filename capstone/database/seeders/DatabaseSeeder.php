@@ -38,11 +38,53 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seed Projects
-        \App\Models\Project::create(['title' => 'Capstone Tower', 'description' => 'Global headquarters development', 'category' => 'Architecture']);
-        \App\Models\Project::create(['title' => 'Smart City Initiative', 'description' => 'Urban planning and tech integration', 'category' => 'Infrastructure']);
+        for ($i = 1; $i <= 18; $i++) {
+            \App\Models\Project::create([
+                'title' => 'Capstone Development Part ' . $i, 
+                'description' => 'Urban planning and tech integration ' . $i, 
+                'category' => 'Infrastructure'
+            ]);
+        }
 
         // Seed Clients
-        \App\Models\Client::create(['name' => 'Global Corp', 'logo' => 'logo1.png']);
-        \App\Models\Client::create(['name' => 'Strategic Partners', 'logo' => 'logo2.png']);
+        for ($i = 1; $i <= 24; $i++) {
+            \App\Models\Client::create(['name' => 'Corporate Partner ' . $i, 'logo' => 'logo_dummy.png']);
+        }
+
+        // Seed Dummy Leads
+        for ($i = 1; $i <= 256; $i++) {
+            \App\Models\Lead::create([
+                'name' => 'Potential Client ' . $i,
+                'email' => 'client' . $i . '@example.com',
+                'service' => 'Consulting',
+                'message' => 'Interested in your global solutions.',
+                'created_at' => now()->subDays(rand(1, 90))
+            ]);
+        }
+
+        // Seed Test Users
+        \App\Models\User::create([
+            'name' => 'Super Admin',
+            'email' => 'super@capstone.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'role' => 'super_admin'
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Regular Admin',
+            'email' => 'admin@capstone.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'role' => 'admin'
+        ]);
+
+        // Seed Dummy Users (Administrators)
+        for ($i = 1; $i <= 12; $i++) {
+            \App\Models\User::create([
+                'name' => 'Admin User ' . $i,
+                'email' => 'admin' . $i . '@capstone.com',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'role' => 'admin'
+            ]);
+        }
     }
 }

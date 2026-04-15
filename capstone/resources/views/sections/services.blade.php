@@ -9,7 +9,7 @@
         </div>
 
         <div class="services-grid">
-            @forelse($services as $i => $service)
+            @forelse($services->take(8) as $i => $service)
             <div class="service-card">
                 <span class="service-num">{{ $service->icon ?? str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                 <h3 class="service-card-title">{{ $service->title }}</h3>

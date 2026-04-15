@@ -8,6 +8,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Dynamic Theme Variables from Admin Settings -->
+    <style>
+        :root {
+            --color-primary:
+                {{ $settings['color_primary'] ?? '#2bbfbf' }}
+            ;
+            --color-dark:
+                {{ $settings['color_dark'] ?? '#1a1a2e' }}
+            ;
+            --color-bg:
+                {{ $settings['color_bg'] ?? '#f2f2f2' }}
+            ;
+            --color-btn:
+                {{ $settings['color_btn'] ?? '#1a2540' }}
+            ;
+            --color-accent:
+                {{ $settings['color_accent'] ?? '#2bbfbf' }}
+            ;
+        }
+
+        html,
+        body {
+            background: var(--color-bg) !important;
+        }
+    </style>
     <style>
         *,
         *::before,
@@ -67,7 +92,7 @@
         .logo-top {
             font-size: 1.3rem;
             font-weight: 800;
-            color: #1a1a2e; /* Navy */
+            color: var(--color-dark);
             letter-spacing: -0.02em;
             line-height: 1;
             display: flex;
@@ -76,7 +101,7 @@
 
         .logo-top span {
             font-weight: 400;
-            color: #2bbfbf; /* Cyan */
+            color: var(--color-primary);
         }
 
         .logo-sub {
@@ -104,11 +129,11 @@
 
         nav a.active,
         nav a:hover {
-            color: #2bbfbf;
+            color: var(--color-primary);
         }
 
         .nav-icon {
-            color: #2bbfbf;
+            color: var(--color-primary);
         }
 
         /* ════════════════════════════
@@ -127,8 +152,6 @@
             grid-template-columns: 1fr 1fr;
             align-items: center;
             width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
             padding: 0 8%;
             gap: 40px;
         }
@@ -143,7 +166,7 @@
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #2bbfbf;
+            color: var(--color-primary);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -154,12 +177,12 @@
             content: '';
             width: 30px;
             height: 2px;
-            background: #2bbfbf;
+            background: var(--color-primary);
         }
 
         .hero-h1 {
             font-size: clamp(2.8rem, 4vw, 4.2rem);
-            font-weight: 300;
+            font-weight: 700;
             color: #2d3748;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -187,7 +210,7 @@
 
         .btn-primary {
             padding: .8rem 2rem;
-            background: #1a2540;
+            background: var(--color-btn);
             color: #fff;
             border: none;
             font-size: .85rem;
@@ -200,7 +223,7 @@
         }
 
         .btn-primary:hover {
-            background: #0F4C81;
+            background: var(--color-primary);
             transform: translateY(-2px);
         }
 
@@ -424,11 +447,11 @@
         .about-line {
             width: 40px;
             height: 2px;
-            background: #2bbfbf;
+            background: var(--color-primary);
         }
 
         .about-tag {
-            color: #2bbfbf;
+            color: var(--color-primary);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -438,7 +461,7 @@
         .about-title {
             font-size: 4.2rem;
             font-weight: 800;
-            color: #1a1a2e;
+            color: var(--color-dark);
             margin-bottom: 40px;
             line-height: 1.1;
         }
@@ -461,7 +484,7 @@
         }
 
         .btn-navy {
-            background: #1a1a2e;
+            background: var(--color-dark);
             color: #fff;
             padding: 16px 40px;
             border-radius: 4px;
@@ -475,7 +498,7 @@
         }
 
         .btn-navy:hover {
-            background: #2bbfbf;
+            background: var(--color-primary);
         }
 
         /* ── MISSION & VISION ── */
@@ -490,28 +513,49 @@
         .mv-card {
             padding-top: 40px;
             border-top: 3px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .mv-card.teal-top {
-            border-top-color: #2bbfbf;
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #2bbfbf;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            z-index: 5;
         }
 
-        .mv-card.dark-top {
-            border-top-color: #1a1a2e;
+        .mv-card.active::before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mv-card.active .mv-num {
+            color: #2bbfbf;
+            transform: scale(1.1);
         }
 
         .mv-num {
-            color: #2bbfbf;
+            color: var(--color-primary);
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 20px;
             display: block;
+            transition: all 0.3s ease;
         }
 
         .mv-title {
             font-size: 2rem;
             font-weight: 700;
-            color: #1a1a2e;
+            color: var(--color-dark);
             margin-bottom: 30px;
         }
 
@@ -528,14 +572,15 @@
 
         /* ── WHY CAPSTONE ── */
         .why-section {
-            padding: 80px 8% 100px;
+            padding: 80px 8% 40px;
             background: #fbfbfb;
         }
 
+        /* ── WHY BANNER ── */
         .why-banner {
             background: #fff;
             border-radius: 40px;
-            padding: 100px 8%;
+            padding: 60px 8%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -565,15 +610,15 @@
         .why-title {
             font-size: 4.5rem;
             font-weight: 800;
-            color: #1a1a2e;
+            color: var(--color-dark);
             line-height: 1.1;
-            margin-bottom: 40px;
+            margin-bottom: 15px;
         }
 
         .why-tag {
-            border-left: 3px solid #2bbfbf;
+            border-left: 3px solid var(--color-primary);
             padding-left: 20px;
-            color: #2bbfbf;
+            color: var(--color-primary);
             font-weight: 700;
             letter-spacing: 2px;
             font-size: 0.85rem;
@@ -602,7 +647,7 @@
             width: 24px;
             height: 24px;
             background: #e0f6f6;
-            color: #2bbfbf;
+            color: var(--color-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -613,7 +658,7 @@
 
         /* ── SERVICES SECTION ── */
         .services-section {
-            padding: 80px 8%;
+            padding: 40px 8% 20px;
             background: #fff;
             text-align: center;
         }
@@ -627,7 +672,7 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
-            color: #2bbfbf;
+            color: var(--color-primary);
             font-weight: 700;
             letter-spacing: 2px;
             font-size: 0.85rem;
@@ -640,13 +685,13 @@
             content: '';
             width: 50px;
             height: 2px;
-            background: #2bbfbf;
+            background: var(--color-primary);
         }
 
         .services-title {
             font-size: 4rem;
             font-weight: 800;
-            color: #1a1a2e;
+            color: var(--color-dark);
             line-height: 1.1;
         }
 
@@ -724,12 +769,12 @@
             top: 10px;
             width: 8px;
             height: 2px;
-            background: #2bbfbf;
+            background: var(--color-primary);
         }
 
         /* ── CAPABILITIES ── */
         .cap-section {
-            padding: 60px 8%;
+            padding: 20px 8%;
             background: #fff;
         }
 
@@ -814,7 +859,7 @@
 
         /* ── WHO WE SERVE ── */
         .serve-section {
-            padding: 80px 8%;
+            padding: 20px 8% 80px;
             background: #fbfbfb;
             display: flex;
             align-items: center;
@@ -939,6 +984,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 15px;
             display: block;
+        }
+
+        .comm-item:last-child .comm-name {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         /* ── CLIENT TICKER ── */
@@ -1339,28 +1389,28 @@
 
         /* ── GALLERY ── */
         .gallery-section {
-            padding: 100px 8%;
+            padding: 60px 8%;
             background: #fff;
             text-align: center;
             overflow: hidden;
         }
 
         .gallery-header {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .gallery-title {
             font-size: 3.5rem;
             font-weight: 800;
             color: #1a1a2e;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: capitalize;
         }
 
         .gallery-sub {
             color: #64748b;
             font-size: 1.1rem;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -1370,7 +1420,7 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
@@ -2459,6 +2509,52 @@
             if (activeTab) {
                 activeTab.click();
             }
+
+            // Dynamic Nav Highlighting with IntersectionObserver
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('section[id]');
+
+            const options = {
+                threshold: 0.5,
+                rootMargin: "-20% 0px -20% 0px" // Add margins to trigger active state in middle of viewport
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth Scroll for Nav Links (Optional but recommended for flow)
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 70, // Header height offset
+                                behavior: 'smooth'
+                            });
+                        }
+                        // For mobile: close nav on click
+                        document.body.classList.remove('nav-open');
+                    }
+                });
+            });
 
             // Contact Form AJAX
             const contactForm = document.getElementById('contactForm');

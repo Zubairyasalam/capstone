@@ -19,7 +19,8 @@ class SettingSeeder extends Seeder
             'hero_btn_text' => 'Get Started',
             'about_description' => 'Capstone Global Services India Private Limited is a Chennai-based integrated business solutions provider, delivering comprehensive services across industries with over a decade of expertise.',
             'about_mission' => 'We act as a global connecting hub, enabling businesses to scale efficiently through strategic consulting, outsourcing, infrastructure development, and technology-driven transformation.',
-            'contact_email' => 'info@capstoneglobalservices.com',
+            'contact_email' => 'zubairyakhan48@gmail.com',
+            'mail_to_address' => 'zubairyakhan48@gmail.com',
         ];
 
         foreach ($settings as $key => $value) {
