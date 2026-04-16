@@ -1868,7 +1868,7 @@
     </script>
 </body>
 
-</html>cript>
+</html>
 </body>
 
 </html>
