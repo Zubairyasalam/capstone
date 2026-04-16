@@ -503,70 +503,74 @@
 
         /* ── MISSION & VISION ── */
         .mv-section {
-            padding: 80px 8%;
+            padding: 100px 8%;
             background: #fff;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
+            gap: 40px;
         }
 
         .mv-card {
-            padding-top: 40px;
-            border-top: 3px solid #eee;
+            padding: 40px 25px 30px;
+            border-top: 2px solid #eee;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
+            background: #fff;
+        }
+
+        .mv-card:hover {
+            background: #fafafa;
         }
 
         .mv-card::before {
             content: '';
             position: absolute;
-            top: -3px;
+            top: -2px;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: #2bbfbf;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
+            width: 0;
+            height: 3px;
+            background: var(--color-primary);
+            transition: width 0.4s ease;
             z-index: 5;
         }
 
         .mv-card.active::before {
-            opacity: 1;
-            transform: translateY(0);
+            width: 100%;
         }
 
         .mv-card.active .mv-num {
-            color: #2bbfbf;
-            transform: scale(1.1);
+            color: var(--color-primary);
+            transform: translateX(5px);
         }
 
         .mv-num {
-            color: var(--color-primary);
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+            color: #ccc;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 25px;
             display: block;
             transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
 
         .mv-title {
             font-size: 2rem;
             font-weight: 700;
             color: var(--color-dark);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
         .mv-title span {
             font-weight: 400;
             color: #777;
+            margin-right: 5px;
         }
 
         .mv-text {
             color: #666;
-            line-height: 1.9;
+            line-height: 1.8;
             font-size: 1rem;
         }
 
@@ -1998,164 +2002,101 @@
             /* ── HERO ── */
             .hero-inner {
                 grid-template-columns: 1fr !important;
-                padding: 40px 5% 20px !important;
+                padding: 40px 8% !important;
                 text-align: left !important;
                 gap: 15px !important;
             }
 
             .hero-btns {
-                justify-content: center !important;
+                justify-content: flex-start !important;
             }
 
             .hero-sub {
-                margin: 0 0 2rem !important;
-                text-align: left !important;
+                margin: 1.5rem 0 2.5rem !important;
+                max-width: 100% !important;
             }
 
             .hero-h1 {
-                font-size: clamp(2rem, 6vw, 3rem) !important;
-            }
-
-            .hero-h1 strong {
-                white-space: normal !important;
+                font-size: clamp(2.2rem, 7vw, 3.5rem) !important;
             }
 
             .hero-carousel {
                 height: auto !important;
+                margin-top: 30px;
             }
 
             .cube-scene {
-                transform: scale(0.75);
+                transform: scale(0.8);
             }
 
             /* ── ABOUT ── */
             .about-section {
                 grid-template-columns: 1fr !important;
-                gap: 40px !important;
-                padding: 60px 5% !important;
+                gap: 60px !important;
+                padding: 80px 8% !important;
             }
 
             .about-image-scatter {
-                height: 300px !important;
+                height: 380px !important;
             }
 
             .about-content {
                 padding: 0 !important;
-                text-align: left !important;
-            }
-
-            .about-tag-wrap {
-                justify-content: flex-start !important;
             }
 
             .about-title {
-                font-size: 2.5rem !important;
+                font-size: 3rem !important;
             }
 
             /* ── MISSION & VISION ── */
             .mv-section {
-                grid-template-columns: 1fr !important;
-                gap: 40px !important;
-                padding: 60px 5% !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 30px !important;
+                padding: 80px 8% !important;
             }
 
             /* ── WHY CAPSTONE ── */
             .why-section {
-                padding: 30px 5% !important;
+                padding: 60px 8% !important;
             }
 
             .why-banner {
                 flex-direction: column !important;
-                text-align: center !important;
-                gap: 25px !important;
-                padding: 30px 5% !important;
-                border-radius: 20px !important;
+                padding: 60px 8% !important;
+                border-radius: 30px !important;
             }
 
             .why-left {
                 width: 100% !important;
+                margin-bottom: 40px;
             }
 
             .why-title {
-                font-size: 2.8rem !important;
-                margin-bottom: 20px !important;
-            }
-
-            .why-tag {
-                border-left: none !important;
-                border-bottom: 2px solid #2bbfbf !important;
-                padding-left: 0 !important;
-                padding-bottom: 5px !important;
-                display: inline-block !important;
-                margin-bottom: 30px !important;
-            }
-
-            .why-item {
-                text-align: left !important;
-                display: flex !important;
-                align-items: flex-start !important;
-                gap: 15px !important;
-                font-size: 1rem !important;
+                font-size: 3.5rem !important;
             }
 
             .why-grid {
                 width: 100% !important;
-                max-width: 300px !important;
-                margin: 0 auto !important;
-                grid-template-columns: 1fr !important;
-                gap: 15px !important;
-                text-align: left !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 30px !important;
             }
 
             /* ── SERVICES ── */
             .services-section {
-                padding: 30px 5% !important;
-                text-align: left !important;
-            }
-
-            .services-header {
-                margin-bottom: 25px !important;
+                padding: 60px 8% !important;
             }
 
             .services-title {
-                font-size: 2.5rem !important;
-                line-height: 1.2 !important;
-                text-align: left !important;
-            }
-
-            .services-title span {
-                font-size: 1.8rem !important;
-                display: block !important;
-                margin-bottom: 5px !important;
-            }
-
-            .services-tag {
-                justify-content: flex-start !important;
-            }
-
-            .services-tag::before,
-            .services-tag::after {
-                width: 30px !important;
+                font-size: 3rem !important;
             }
 
             .services-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 25px !important;
             }
 
             .service-card {
-                padding: 30px 20px !important;
-                text-align: left !important;
-            }
-
-            .service-card-title {
-                min-height: auto !important;
-                margin-bottom: 15px !important;
-            }
-
-            .service-num {
-                font-size: 1.8rem !important;
-                margin-bottom: 10px !important;
+                padding: 40px 25px !important;
             }
 
             /* ── CAPABILITIES ── */
@@ -2317,7 +2258,7 @@
 
             /* ── MEDIA CENTRE ── */
             .media-section {
-                padding: 60px 5% !important;
+                padding: 80px 8% !important;
             }
 
             .media-header {
@@ -2327,69 +2268,40 @@
             }
 
             .media-title-group h2 {
-                font-size: 2rem !important;
+                font-size: 2.2rem !important;
             }
 
             .media-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 25px !important;
             }
 
             .thought-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 20px !important;
             }
 
             /* ── FOOTER ── */
             .footer-section {
-                padding: 60px 5% 30px !important;
+                padding: 100px 8% 40px !important;
             }
 
             .footer-grid {
-                grid-template-columns: 1fr !important;
-                gap: 40px !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 50px 40px !important;
                 text-align: left !important;
-                margin-bottom: 30px !important;
-                padding-bottom: 30px !important;
+                margin-bottom: 50px !important;
+                padding-bottom: 50px !important;
             }
 
             .footer-col {
                 padding-right: 0 !important;
-                align-items: flex-start !important;
-                text-align: left !important;
-            }
-
-            .footer-logo {
-                justify-content: flex-start !important;
-            }
-
-            .footer-socials {
-                justify-content: flex-start !important;
-                padding-left: 0 !important;
-            }
-
-            .footer-links a {
-                justify-content: flex-start !important;
-            }
-
-            .footer-contact-item {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 8px !important;
-                margin-bottom: 20px !important;
-            }
-
-            .footer-contact-item p {
-                font-size: 0.85rem !important;
-                line-height: 1.4 !important;
-                word-break: normal !important;
-                overflow-wrap: break-word !important;
             }
 
             .footer-bottom {
                 flex-direction: column !important;
-                text-align: left !important;
-                gap: 20px !important;
                 align-items: flex-start !important;
-                padding-top: 20px !important;
+                gap: 25px !important;
             }
 
             .footer-bottom p {

@@ -24,6 +24,7 @@
             --white: #ffffff;
             --border: #ebeef4;
             --sidebar-width: 300px;
+            --header-height: 60px;
         }
 
         * {
@@ -39,39 +40,41 @@
             overflow-x: hidden;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: "Nunito", sans-serif;
         }
 
         /* Top Header */
         .header {
-            z-index: 997;
-            height: 60px;
+            z-index: 1001;
+            height: var(--header-height);
             box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
             background-color: var(--white);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 30px;
+            padding: 0 20px;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
         }
 
-        .logo {
-            text-decoration: none;
+        .logo-wrap {
             display: flex;
             align-items: center;
-            width: 280px;
-            font-size: 26px;
-            font-weight: 700;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .toggle-sidebar-btn {
+            font-size: 24px;
+            cursor: pointer;
             color: var(--heading);
+            display: none;
+            background: none;
+            border: none;
+            padding: 5px;
         }
 
         /* Sidebar */
@@ -81,11 +84,12 @@
             left: 0;
             bottom: 0;
             width: var(--sidebar-width);
-            z-index: 996;
+            z-index: 1000;
             padding: 80px 15px 30px 15px;
             overflow-y: auto;
             background-color: var(--white);
             box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .sidebar-nav {
@@ -115,6 +119,7 @@
             border-radius: 4px;
             text-decoration: none;
             cursor: pointer;
+            transition: 0.3s;
         }
 
         .sidebar-nav .nav-link:hover,
@@ -125,9 +130,10 @@
 
         /* Main */
         main {
-            margin-top: 60px;
+            margin-top: var(--header-height);
             margin-left: var(--sidebar-width);
             padding: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .pagetitle {
@@ -150,9 +156,10 @@
         .card {
             margin-bottom: 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
             background: var(--white);
+            overflow: hidden;
         }
 
         .card-body {
@@ -162,13 +169,13 @@
         .card-title {
             padding-bottom: 15px;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--heading);
             font-family: "Poppins", sans-serif;
         }
 
         .stat-val {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--heading);
         }
@@ -181,18 +188,26 @@
         .row {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            margin: 0 -10px;
         }
 
         .col {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
+            padding: 0 10px;
         }
 
-        /* Tables */
+        /* Tables Responsive Wrapper */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }
 
         th {
@@ -227,33 +242,102 @@
             padding: 10px;
             border: 1px solid var(--border);
             border-radius: 4px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
         }
 
         .btn-primary {
             background: var(--primary);
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
         }
 
         .btn-danger {
             background: var(--danger);
             color: #fff;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: 500;
         }
 
         .super-section {
             display: none;
+            animation: fadeIn 0.3s ease;
         }
 
         .super-section.active {
             display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 1199px) {
+            .sidebar {
+                left: -300px;
+            }
+            main {
+                margin-left: 0;
+            }
+            .toggle-sidebar-btn {
+                display: block;
+            }
+            .sidebar.show {
+                left: 0;
+            }
+            .sidebar-overlay {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.4);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s;
+            }
+            .sidebar.show + .sidebar-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @media (max-width: 575px) {
+            main {
+                padding: 20px 15px;
+            }
+            .pagetitle h1 {
+                font-size: 20px;
+            }
+            .stat-val {
+                font-size: 24px;
+            }
+            .logo-wrap span:first-of-type {
+                font-size: 18px !important;
+            }
+            .logo-wrap span:last-of-type {
+                font-size: 11px !important;
+            }
         }
     </style>
 </head>
@@ -261,21 +345,30 @@
 <body>
 
     <header class="header">
-        <a href="#" class="logo" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-            <div
-                style="width: 40px; height: 40px; background: #2bbfbf; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff;">
-                <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px; height:24px;">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="toggle-sidebar-btn" onclick="toggleSidebar()">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-            </div>
-            <div style="display:flex; flex-direction:column; line-height:1.2;">
-                <span style="font-size: 24px; font-weight: 700; color: #000;">Capstone Global</span>
-                <span style="font-size: 14px; color: #555; font-weight:400;">Super Admin Dashboard</span>
-            </div>
-        </a>
+            </button>
+            <a href="#" class="logo-wrap">
+                <div
+                    style="width: 36px; height: 36px; background: #2bbfbf; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <div style="display:flex; flex-direction:column; line-height:1.2;">
+                    <span style="font-size: 20px; font-weight: 700; color: #000;">Capstone Global</span>
+                    <span style="font-size: 12px; color: #555; font-weight:400;">Super Admin Dashboard</span>
+                </div>
+            </a>
+        </div>
     </header>
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <ul class="sidebar-nav">
             <li class="nav-item">
                 <div class="nav-link active" onclick="switchSuperSection('super-dash', this)">
@@ -316,6 +409,7 @@
             </li>
         </ul>
     </aside>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <main>
         <div class="pagetitle">
@@ -325,7 +419,7 @@
 
         @if(session('success'))
             <div
-                style="background:#d1fae5; color:#065f46; padding:15px; border-radius:4px; margin-bottom:20px; border:1px solid #a7f3d0;">
+                style="background:#d1fae5; color:#065f46; padding:15px; border-radius:8px; margin-bottom:20px; border:1px solid #a7f3d0;">
                 {{ session('success') }}
             </div>
         @endif
@@ -346,8 +440,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">System Health</h5>
-                            <div style="font-size:14px; line-height:2;">
-                                <div>Laravel: <strong>{{ app()->version() }}</strong></div>
+                            <div style="font-size:14px; line-height:2.2;">
+                                <div>Laravel Version: <strong>{{ app()->version() }}</strong></div>
                                 <div>Environment: <strong style="color:var(--danger)">{{ config('app.env') }}</strong>
                                 </div>
                             </div>
@@ -360,7 +454,7 @@
                             <h5 class="card-title">Quick Actions</h5>
                             <form action="{{ route('admin.system.clear-cache') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Clear
+                                <button type="submit" class="btn-primary" style="width:100%; margin-top:5px;">Clear
                                     System Cache</button>
                             </form>
                         </div>
@@ -371,12 +465,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">DB Summary (Table Counts)</h5>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:15px;">
+                    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:15px;">
                         @foreach($db_stats as $table => $count)
-                            <div style="background:var(--bg-body); padding:15px; border-radius:4px; text-align:center;">
-                                <div style="font-size:12px; color:var(--text-muted); text-transform:uppercase;">{{ $table }}
+                            <div style="background:var(--bg-body); padding:15px; border-radius:8px; text-align:center; border: 1px solid var(--border);">
+                                <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing: 0.5px;">{{ $table }}
                                 </div>
-                                <div style="font-size:20px; font-weight:700;">{{ $count }}</div>
+                                <div style="font-size:22px; font-weight:700;">{{ $count }}</div>
                             </div>
                         @endforeach
                     </div>
@@ -387,63 +481,65 @@
         <!-- MANAGE ADMINS -->
         <div id="super-admins" class="super-section">
             <div class="row">
-                <div class="col" style="flex:2;">
+                <div class="col" style="flex:2.5;">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Administrator Directory</h5>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($users as $user)
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
                                         <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>
-                                                <span
-                                                    style="padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; background:{{ $user->role == 'super_admin' ? '#fee2e2' : '#ecfdf5' }}; color:{{ $user->role == 'super_admin' ? '#ef4444' : '#10b981' }};">
-                                                    {{ strtoupper($user->role) }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                                    onsubmit="return confirm('Delete user?')">
-                                                    @csrf @method('DELETE')
-                                                    <button type="submit" class="btn-danger">Delete</button>
-                                                </form>
-                                            </td>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($users as $user)
+                                            <tr>
+                                                <td style="font-weight: 600;">{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    <span
+                                                        style="padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; background:{{ $user->role == 'super_admin' ? '#fee2e2' : '#ecfdf5' }}; color:{{ $user->role == 'super_admin' ? '#ef4444' : '#10b981' }};">
+                                                        {{ strtoupper(str_replace('_', ' ', $user->role)) }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
+                                                        onsubmit="return confirm('Delete user?')">
+                                                        @csrf @method('DELETE')
+                                                        <button type="submit" class="btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">New Admin</h5>
+                            <h5 class="card-title">Add New Admin</h5>
                             <form action="{{ route('admin.users.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group"><label>Full Name</label><input type="text" name="name"
-                                        class="form-control" required></div>
+                                        class="form-control" required placeholder="Ex. John Doe"></div>
                                 <div class="form-group"><label>Email</label><input type="email" name="email"
-                                        class="form-control" required></div>
+                                        class="form-control" required placeholder="john@example.com"></div>
                                 <div class="form-group"><label>Password</label><input type="password" name="password"
-                                        class="form-control" required></div>
+                                        class="form-control" required placeholder="••••••••"></div>
                                 <div class="form-group"><label>Role</label>
                                     <select name="role" class="form-control">
                                         <option value="admin">Admin</option>
                                         <option value="super_admin">Super Admin</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn-primary" style="width:100%;">Create User</button>
+                                <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Create Account</button>
                             </form>
                         </div>
                     </div>
@@ -472,11 +568,12 @@
         <div id="super-logs" class="super-section">
             <div class="card">
                 <div class="card-body"
-                    style="background:#111; color:#10b981; font-family:monospace; padding:20px; border-radius:4px;">
-                    <h5 class="card-title" style="color:#fff;">Latest Activity Logs</h5>
-                    <div style="height:400px; overflow-y:auto; font-size:13px;">
+                    style="background:#0d1117; color:#3fb950; font-family:monospace; padding:20px; border-radius:8px;">
+                    <h5 class="card-title" style="color:#ffffff; border-bottom: 1px solid #30363d; padding-bottom: 10px;">Latest Activity Logs</h5>
+                    <div style="height:500px; overflow-y:auto; font-size:12px; line-height:1.6;">
                         @foreach($logs as $log)
-                            <div style="margin-bottom:5px; border-bottom:1px solid #222; padding-bottom:5px;">{{ $log }}
+                            <div style="margin-bottom:8px; border-bottom:1px solid #21262d; padding-bottom:8px; word-break: break-all;">
+                                {{ $log }}
                             </div>
                         @endforeach
                     </div>
@@ -486,7 +583,16 @@
     </main>
 
     <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+
         function switchSuperSection(id, el) {
+            // Close sidebar on mobile after selection
+            if (window.innerWidth < 1200) {
+                toggleSidebar();
+            }
+
             document.querySelectorAll('.super-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
 
@@ -500,6 +606,9 @@
                 'super-logs': 'System Logs'
             };
             document.getElementById('page-title-text').innerText = titles[id];
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

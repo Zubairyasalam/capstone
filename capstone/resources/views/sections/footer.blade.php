@@ -62,7 +62,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 <strong>Capstone Global Services India Private Limited.</strong> All Rights Reserved.</p>
-            <div class="footer-bottom-links">
+            <div class="footer-bottom-links" style="display: none;">
                 <a href="#">Global Business Solutions India</a>
                 <a href="#">BPO Services Chennai</a>
                 <a href="#">HR Recruitment Agency India</a>
