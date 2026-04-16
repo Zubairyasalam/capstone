@@ -152,7 +152,7 @@
             grid-template-columns: 1fr 1fr;
             align-items: center;
             width: 100%;
-            padding: 0 8%;
+            padding: 3% 8%;
             gap: 40px;
         }
 
@@ -1934,7 +1934,7 @@
             overflow: hidden;
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
 
             /* ── HEADER ── */
             header {
@@ -1950,8 +1950,10 @@
 
             .logo-wrap {
                 margin: 0 !important;
-                transform: scale(0.9);
-                transform-origin: left;
+                transform: scale(0.85);
+                transform-origin: left center;
+                display: flex;
+                align-items: center;
             }
 
             .mobile-toggle {
@@ -2002,13 +2004,26 @@
             /* ── HERO ── */
             .hero-inner {
                 grid-template-columns: 1fr !important;
-                padding: 40px 8% !important;
+                padding: 40px 5% !important;
                 text-align: left !important;
                 gap: 15px !important;
             }
 
             .hero-btns {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                gap: 12px !important;
                 justify-content: flex-start !important;
+                width: 100%;
+            }
+
+            .hero-btns a {
+                flex: 1;
+                text-align: center;
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                white-space: nowrap;
+                font-size: 0.8rem !important;
             }
 
             .hero-sub {
@@ -2033,7 +2048,7 @@
             .about-section {
                 grid-template-columns: 1fr !important;
                 gap: 60px !important;
-                padding: 80px 8% !important;
+                padding: 80px 5% !important;
             }
 
             .about-image-scatter {
@@ -2046,23 +2061,37 @@
 
             .about-title {
                 font-size: 3rem !important;
+                margin-bottom: 20px !important;
+            }
+
+            .about-text-lead {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+                padding-left: 15px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .about-text {
+                font-size: 0.95rem !important;
+                line-height: 1.7 !important;
+                margin-bottom: 30px !important;
             }
 
             /* ── MISSION & VISION ── */
             .mv-section {
                 grid-template-columns: 1fr 1fr !important;
                 gap: 30px !important;
-                padding: 80px 8% !important;
+                padding: 60px 5% !important;
             }
 
             /* ── WHY CAPSTONE ── */
             .why-section {
-                padding: 60px 8% !important;
+                padding: 60px 5% !important;
             }
 
             .why-banner {
                 flex-direction: column !important;
-                padding: 60px 8% !important;
+                padding: 60px 5% !important;
                 border-radius: 30px !important;
             }
 
@@ -2083,11 +2112,15 @@
 
             /* ── SERVICES ── */
             .services-section {
-                padding: 60px 8% !important;
+                padding: 60px 5% !important;
             }
 
             .services-title {
-                font-size: 3rem !important;
+                font-size: 2.5rem !important;
+            }
+
+            .services-title span {
+                font-size: 2rem !important;
             }
 
             .services-grid {
@@ -2148,12 +2181,11 @@
             }
 
             .client-list {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr 1fr !important;
                 width: 100% !important;
-                max-width: 320px !important;
+                max-width: 900px !important;
                 margin: 0 auto !important;
-                text-align: left !important;
-                gap: 12px !important;
+                gap: 15px !important;
             }
 
             .client-chip {
@@ -2283,15 +2315,16 @@
 
             /* ── FOOTER ── */
             .footer-section {
-                padding: 100px 8% 40px !important;
+                padding: 60px 5% !important;
+                padding-bottom: 30px !important;
             }
 
             .footer-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 50px 40px !important;
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
                 text-align: left !important;
-                margin-bottom: 50px !important;
-                padding-bottom: 50px !important;
+                margin-bottom: 0px !important;
+                padding-bottom: 0px !important;
             }
 
             .footer-col {
@@ -2302,6 +2335,8 @@
                 flex-direction: column !important;
                 align-items: flex-start !important;
                 gap: 25px !important;
+                border-top: 0px solid rgba(255, 255, 255, 0.05);
+                padding-top: 0px;
             }
 
             .footer-bottom p {
@@ -2322,6 +2357,25 @@
             }
         }
 
+        @media (max-width: 768px) {
+
+            .services-grid,
+            .mv-section,
+            .why-grid,
+            .cap-grid,
+            .client-list {
+                grid-template-columns: 1fr !important;
+            }
+
+            .services-title {
+                font-size: 2.2rem !important;
+            }
+
+            .services-title span {
+                font-size: 1.6rem !important;
+            }
+        }
+
         @media (max-width: 480px) {
             .hero-h1 {
                 font-size: 1.8rem !important;
@@ -2329,6 +2383,12 @@
 
             .about-title {
                 font-size: 2rem !important;
+                margin-bottom: 25px !important;
+            }
+
+            .about-section {
+                padding: 40px 8% !important;
+                gap: 30px !important;
             }
 
             .cube-scene {
@@ -2341,6 +2401,10 @@
 
             .services-title {
                 font-size: 1.8rem !important;
+            }
+
+            .services-title span {
+                font-size: 1.4rem !important;
             }
 
             .gallery-grid {
